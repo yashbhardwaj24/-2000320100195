@@ -8,10 +8,8 @@ const SingleTrainPage = () => {
   const [train, setTrain] = useState(null);
 
   useEffect(() => {
-    // Fetch data for a single train using the trainNumber parameter and update the state
-    // Replace 'YOUR_API_ENDPOINT' with the actual endpoint for fetching a single train
     axios
-      .get(`YOUR_API_ENDPOINT/${trainNumber}`)
+      .get(`http://20.244.56.144/train/trains/${trainNumber}`)
       .then((response) => {
         setTrain(response.data);
       })
