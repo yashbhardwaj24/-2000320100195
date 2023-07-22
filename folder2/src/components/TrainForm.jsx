@@ -28,7 +28,32 @@ const TrainForm = () => {
         body: JSON.stringify(formData),
       });
       let data = await response.json();
-      if(!data) alert('inserted data')
+      if (!data) {
+        fetchData1();
+        alert("data inserted");
+      }
+    } catch (error) {
+      console.log("error 🐹 :" + error);
+    }
+  };
+
+  const fetchData1 = async () => {
+    try {
+      let url = `http://20.244.56.144/train/auth`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          ownerName: "Ram",
+          ownerEmail: "ram@abc.edu",
+          rollNo: "1",
+        }),
+      });
+      let data = await response.json();
+      localStorage.setItem('Token', data)
     } catch (error) {
       console.log("error 🐹 :" + error);
     }
@@ -36,7 +61,7 @@ const TrainForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchData()
+    fetchData();
   };
 
   return (
